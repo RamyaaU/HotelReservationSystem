@@ -6,6 +6,12 @@ namespace HotelReservationSystem
 {
     public class HotelService
     {
+        /// <summary>
+        /// Finds the cheapest hotel.
+        /// </summary>
+        /// <param name="startDate">The start date.</param>
+        /// <param name="endDate">The end date.</param>
+        /// <returns></returns>
         public HotelType FindCheapestHotel(string startDate, string endDate)
         {
             //initialization
