@@ -14,8 +14,12 @@ namespace HotelReservationTest4
         /// </value>
         public double RATING { get; private set; }
 
+
+        /// <summary>
+        /// Adds ratings to each hotel.
+        /// </summary>
         [TestMethod]
-        public void AbilityToAdd_Ratings_To_EachHotel()
+        public void Ability_ToAdd_Ratings_To_EachHotel()
         {
             //Arrange
             double expectedRATING = 2;
