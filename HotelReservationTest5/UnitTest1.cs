@@ -7,6 +7,14 @@ namespace HotelReservationTest5
     public class UnitTest1
     {
         /// <summary>
+        /// Gets the bridge wood.
+        /// </summary>
+        /// <value>
+        /// The bridge wood.
+        /// </value>
+        public object BridgeWood { get; private set; }
+
+        /// <summary>
         /// Givens the date range find the cheapest best rated hotel.
         /// </summary>
         [TestMethod]
@@ -15,10 +23,15 @@ namespace HotelReservationTest5
             HotelService service = new HotelService();
             //Act
             HotelType hotel = service.FindCheapestHotel("2020-09-11", "2020-09-12");
+            double actual = BridgeWood.FindTotalCost("2020-09-11", "2020-09-12");
             //Arrange
             HotelType expected = HotelType.BRIDGEWOOD;
+            double expected = 200;
             //Assert
             Assert.AreEqual(hotel, expected);
+            Assert.AreEqual(actual, expected);
         }
     }
 }
+
+
