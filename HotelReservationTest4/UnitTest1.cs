@@ -19,14 +19,12 @@ namespace HotelReservationTest4
         {
             //Arrange
             double expectedRATING = 2;
-            //Act
             Hotel LakeWood = new Hotel(HotelType.LAKEWOOD);
             { RATING = 3; }
             Hotel BridgeWood = new Hotel(HotelType.BRIDGEWOOD);
             { RATING = 4; }
             Hotel RidgeWood = new Hotel(HotelType.RIDGEWOOD);
             { RATING = 2; }
-
             //Act
             double actualRating = (double) HotelType.RIDGEWOOD;
             //Assert
