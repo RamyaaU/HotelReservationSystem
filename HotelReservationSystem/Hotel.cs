@@ -1,54 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace HotelReservationSystem
 {
+    public enum CustomerType { NORMAL = 1, REWARD }
     public class Hotel
     {
-        //Hotel Name
+        //Hotel name
         HotelType type;
-        private HotelType lAKEWOOD;
 
-        //Rate for Regular Customer        
+        //Weekday rate of hotel        
         /// <summary>
-        /// Gets the weekday rate.
+        /// The weekday rate
         /// </summary>
-        /// <value>
-        /// The weekday rate.
-        /// </value>
-        public double WEEKDAY_RATE { get; }
+        private readonly double WEEKDAY_RATE;
 
+        //Weekend rate of hotel        
         /// <summary>
-        /// Gets the weekend rate.
+        /// The weekend rate
         /// </summary>
-        /// <value>
-        /// The weekend rate.
-        /// </value>
-        public double WEEKEND_RATE { get; }
+        private readonly double WEEKEND_RATE;
 
+        //Rating of hotel        
         /// <summary>
-        /// Gets the rating.
+        /// The rating
         /// </summary>
-        /// <value>
-        /// The rating.
-        /// </value>
-        public double RATING { get; }
+        public readonly int RATING;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Hotel"/> class.
+        /// Parameterized constructor of Hotel
         /// </summary>
-        /// <param name="hotelType">Type of the hotel.</param>
-        /// <param name="customerType">Type of the customer.</param>
-        /// <exception cref="HotelReservationSystem.HotelReservationException">
-        /// Invalid customer type
-        /// or
-        /// Invalid customer type
-        /// or
-        /// Invalid customer type
-        /// or
-        /// Invalid Hotel Type
-        /// </exception>
+        /// <param name="hotelType"></param>
         public Hotel(HotelType hotelType, CustomerType customerType)
         {
             this.type = hotelType;
@@ -123,29 +107,18 @@ namespace HotelReservationSystem
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_HOTEL_TYPE, "Invalid Hotel Type");
             }
         }
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="Hotel"/> class.
+        /// Finds rate of stay from startdate to end date at hotel
         /// </summary>
-        /// <param name="lAKEWOOD">The l akewood.</param>
-        public Hotel(HotelType lAKEWOOD)
+        /// <param name="startDateString"></param>
+        /// <param name="endDateString"></param>
+        /// <returns>rate of stay</returns>
+        public double FindRate(string startDateString, string endDateString)
         {
-            this.lAKEWOOD = lAKEWOOD;
-        }
-
-        /// <summary>
-        /// Finds the total cost.
-        /// </summary>
-        /// <param name="startDateString">The start date string.</param>
-        /// <param name="endDateString">The end date string.</param>
-        /// <returns></returns>
-        /// <exception cref="HotelReservationSystem.HotelReservationException">Invalid date entered</exception>
-        public double FindTotalCost(string startDateString, string endDateString)
-        {
-            //variable
-            double TotalCost = 0;
+            double rate = 0;
             try
             {
+                CultureInfo provider = CultureInfo.InvariantCulture;
                 //converts the start date and time value to an equivalent string representation of date and time
                 DateTime startDate = Convert.ToDateTime(startDateString);
                 //converts the end date and time value to an equivalent string representation of date and time
@@ -154,16 +127,17 @@ namespace HotelReservationSystem
                 for (; startDate <= endDate; startDate = startDate.AddDays(1))
                 {
                     if (startDate.DayOfWeek == DayOfWeek.Saturday || startDate.DayOfWeek == DayOfWeek.Sunday)
-                        TotalCost += WEEKEND_RATE;
+                        rate = rate + WEEKEND_RATE;
                     else
-                        TotalCost += WEEKDAY_RATE;
+                        rate = rate + WEEKDAY_RATE;
                 }
             }
             catch (Exception)
             {
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_DATE, "Invalid date entered");
             }
-            return TotalCost;
+            return rate;
         }
     }
 }
+

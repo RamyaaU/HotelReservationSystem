@@ -6,43 +6,49 @@ namespace HotelReservationTest8
     [TestClass]
     public class UnitTest1
     {
-        public double RATING { get; private set; }
-        public double WEEKDAY_RATEForNormal { get; private set; }
-        public double WEEKEND_RATEForNormal { get; private set; }
-        public double WEEKDAY_RATEForReward { get; private set; }
-        public double WEEKEND_RATEForReward { get; private set; }
-        public object LAKEWOOD { get; private set; }
-        public object NORMAL { get; private set; }
-
+        /// <summary>
+        /// Givens the regular customer type and valid dates for hotel lakewood should return hotel rates.
+        /// </summary>
         [TestMethod]
-        public void Ability_ToAdd_Ratings_To_EachHotel()
+        public void GivenRegularCustomerTypeAndValidDatesForHotelLakewood_ShouldReturn_HotelRates()
         {
+            Hotel hotel = new Hotel(HotelType.LAKEWOOD, CustomerType.NORMAL);
             //Arrange
-            double expectedWEEKDAY_RATE = 80;
-            double expectedWEEKEND_RATE = 80;
-            double expectedRATING = 2;
-            Hotel LakeWood = new Hotel(HotelType.LAKEWOOD);
-            {
-                WEEKDAY_RATEForNormal = 110;
-                WEEKEND_RATEForNormal = 90;
-                WEEKDAY_RATEForReward = 80;
-                WEEKEND_RATEForReward = 80;
-            }
-            Hotel BridgeWood = new Hotel(HotelType.BRIDGEWOOD);
-            {
-                WEEKDAY_RATEForNormal = 150;
-                WEEKEND_RATEForNormal = 50;
-                WEEKDAY_RATEForReward = 110;
-                WEEKEND_RATEForReward = 50;
-            }
-            Hotel RidgeWood = new Hotel(HotelType.RIDGEWOOD);
-            {
-                WEEKDAY_RATEForNormal = 220;
-                WEEKEND_RATEForNormal = 50;
-                WEEKDAY_RATEForReward = 110;
-                WEEKEND_RATEForReward = 40;
-            }
+            double expected = 200;
+            //Act
+            double actual = hotel.FindRate("11-09-2020", "12-09-2020");
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Given the regular customer type and valid dates for hotel bridgewood should return hotel rates.
+        /// </summary>
+        [TestMethod]
+        public void GivenRegularCustomerTypeAndValidDatesForHotelBridgewood_ShouldReturn_HotelRates()
+        {
+            Hotel hotel = new Hotel(HotelType.BRIDGEWOOD, CustomerType.NORMAL);
+            //Arrange
+            double expected = 200;
+            //Act
+            double actual = hotel.FindRate("11-09-2020", "12-09-2020");
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Given the regular customer type and valid dates for hotel ridgewood should return hotel rates.
+        /// </summary>
+        [TestMethod]
+        public void GivenRegularCustomerTypeAndValidDatesForHotelRidgewood_ShouldReturn_HotelRates()
+        {
+            Hotel hotel = new Hotel(HotelType.RIDGEWOOD, CustomerType.NORMAL);
+            //Arrange
+            double expected = 370;
+            //Act
+            double actual = hotel.FindRate("11-09-2020", "12-09-2020");
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
-

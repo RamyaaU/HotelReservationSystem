@@ -6,54 +6,59 @@ namespace HotelReservationSystem
 {
     public class HotelService
     {
-        public HotelType FindCheapestHotel(string startDate, string endDate)
-        {
-            //initialization
-            Hotel LakeWood = new Hotel(HotelType.LAKEWOOD);
-            Hotel BridgeWood = new Hotel(HotelType.BRIDGEWOOD);
-            Hotel RidgeWood = new Hotel(HotelType.RIDGEWOOD);
-
-            //calculating rate of each Hotel Between the given dates
-            double LakeWoodRate = LakeWood.FindTotalCost(startDate, endDate);
-            double BridgeWoodRate = BridgeWood.FindTotalCost(startDate, endDate);
-            double RidgeWoodRate = RidgeWood.FindTotalCost(startDate, endDate);
-
-            //returns the smaller value between two rates
-            double MinRate = Math.Min(LakeWoodRate, Math.Min(BridgeWoodRate, RidgeWoodRate));
-            if (MinRate == LakeWoodRate && MinRate == BridgeWoodRate && MinRate == RidgeWoodRate)
-                return HotelType.RIDGEWOOD;
-            if (MinRate == LakeWoodRate && MinRate == BridgeWoodRate)
-                return HotelType.BRIDGEWOOD;
-            if (MinRate == BridgeWoodRate && MinRate == RidgeWoodRate)
-                return HotelType.RIDGEWOOD;
-            if (MinRate == LakeWoodRate && MinRate == BridgeWoodRate)
-                return HotelType.RIDGEWOOD;
-            if (MinRate == LakeWoodRate)
-                return HotelType.LAKEWOOD;
-            if (MinRate == BridgeWoodRate)
-                return HotelType.BRIDGEWOOD;
-            return HotelType.RIDGEWOOD;
-        }
-
         /// <summary>
-        /// Finds the best rated hotel.
+        /// Finds the cheap hotel.
         /// </summary>
         /// <param name="startDate">The start date.</param>
         /// <param name="endDate">The end date.</param>
-        /// <returns></returns>
-        public HotelType FindBestRatedHotel(string startDate, string endDate)
+        /// <param name="customerType">Type of the customer.</param>
+        public void FindCheapHotel(string startDate, string endDate, CustomerType customerType)
         {
-            Hotel RidgeWood = new Hotel(HotelType.RIDGEWOOD, CustomerType.NORMAL);
-            Hotel BridgeWood = new Hotel(HotelType.BRIDGEWOOD, CustomerType.NORMAL);
-            Hotel LakeWood = new Hotel(HotelType.LAKEWOOD, CustomerType.NORMAL);
-            //returns the larger value between two rates
-            double MaxRating = Math.Max(RidgeWood.RATING, Math.Max(BridgeWood.RATING, LakeWood.RATING));
-            if (MaxRating == RidgeWood.RATING)
-                return HotelType.RIDGEWOOD;
-            if (MaxRating == BridgeWood.RATING)
-                return HotelType.BRIDGEWOOD;
-            else
-                return HotelType.LAKEWOOD;
+            HotelType hotelType = HotelType.LAKEWOOD;
+            Hotel lakewood = new Hotel(hotelType, customerType);
+            double rateLakewood = lakewood.FindRate(startDate, endDate);
+            hotelType = HotelType.BRIDGEWOOD;
+            Hotel bridgewood = new Hotel(hotelType, customerType);
+            double rateBridgewood = bridgewood.FindRate(startDate, endDate);
+            hotelType = HotelType.RIDGEWOOD;
+            Hotel ridgewood = new Hotel(hotelType, customerType);
+            double rateRidgewood = ridgewood.FindRate(startDate, endDate);
+            if (rateLakewood < rateBridgewood && rateLakewood < rateRidgewood)
+            {
+                Console.WriteLine("Best hotel for your stay is " + HotelType.LAKEWOOD + ", Rating: " + lakewood.RATING + ", Cost of stay: " + rateLakewood);
+            }
+            if ((rateBridgewood < rateLakewood && rateBridgewood < rateRidgewood) || (rateLakewood == rateBridgewood && rateBridgewood < rateRidgewood))
+            {
+                Console.WriteLine("Best hotel for your stay is " + HotelType.BRIDGEWOOD + ", Rating: " + bridgewood.RATING + ", Cost of stay: " + rateBridgewood);
+            }
+            if ((rateRidgewood < rateLakewood && rateRidgewood < rateBridgewood) || (rateLakewood == rateRidgewood && rateRidgewood < rateBridgewood) || (rateBridgewood == rateRidgewood && rateRidgewood < rateLakewood))
+            {
+                Console.WriteLine("Best hotel for your stay is " + HotelType.RIDGEWOOD + ", Rating: " + ridgewood.RATING + ", Cost of stay: " + rateRidgewood);
+            }
+        }
+
+        /// <summary>
+        /// Finds best hotel according to rating
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        public void FindBestRatedHotel(string startDate, string endDate, CustomerType customerType)
+        {
+            HotelType hotelType = HotelType.LAKEWOOD;
+            Hotel lakewood = new Hotel(hotelType, customerType);
+            double rateLakewood = lakewood.FindRate(startDate, endDate);
+            hotelType = HotelType.BRIDGEWOOD;
+            Hotel bridgewood = new Hotel(hotelType, customerType);
+            double rateBridgewood = bridgewood.FindRate(startDate, endDate);
+            hotelType = HotelType.RIDGEWOOD;
+            Hotel ridgewood = new Hotel(hotelType, customerType);
+            double rateRidgewood = ridgewood.FindRate(startDate, endDate);
+            if (lakewood.RATING > bridgewood.RATING && lakewood.RATING > ridgewood.RATING)
+                Console.WriteLine("Best hotel for your stay is " + HotelType.LAKEWOOD + ", Rating: " + lakewood.RATING + ", Cost of stay: " + rateLakewood);
+            if (bridgewood.RATING > lakewood.RATING && bridgewood.RATING > ridgewood.RATING)
+                Console.WriteLine("Best hotel for your stay is " + HotelType.BRIDGEWOOD + ", Rating: " + bridgewood.RATING + ", Cost of stay: " + rateBridgewood);
+            if (ridgewood.RATING > lakewood.RATING && ridgewood.RATING > bridgewood.RATING)
+                Console.WriteLine("Best hotel for your stay is " + HotelType.RIDGEWOOD + ", Rating: " + ridgewood.RATING + ", Cost of stay: " + rateRidgewood);
         }
     }
 }
