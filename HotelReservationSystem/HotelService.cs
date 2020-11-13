@@ -46,7 +46,7 @@ namespace HotelReservationSystem
             Hotel RidgeWood = new Hotel(HotelType.RIDGEWOOD, CustomerType.NORMAL);
             Hotel BridgeWood = new Hotel(HotelType.BRIDGEWOOD, CustomerType.NORMAL);
             Hotel LakeWood = new Hotel(HotelType.LAKEWOOD, CustomerType.NORMAL);
-
+            //returns the larger value between two rates
             double MaxRating = Math.Max(RidgeWood.RATING, Math.Max(BridgeWood.RATING, LakeWood.RATING));
             if (MaxRating == RidgeWood.RATING)
                 return HotelType.RIDGEWOOD;
