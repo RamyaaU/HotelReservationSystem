@@ -6,8 +6,11 @@ namespace HotelReservationTest9
     [TestClass]
     public class UnitTest1
     {
+        /// <summary>
+        /// Given the reward customer type and valid date range for hotel bridgewood should return hotel rates.
+        /// </summary>
         [TestMethod]
-        public void GivenRewardCustomerTypeAndValidDatesForHotelBridgewood_ShouldReturn_HotelRates()
+        public void GivenRewardCustomerType_AndValidDateRange_ForHotelBridgewood_ShouldReturn_HotelRates()
         {
             Hotel hotel = new Hotel(HotelType.BRIDGEWOOD, CustomerType.REWARD);
             //Arrange
@@ -18,6 +21,9 @@ namespace HotelReservationTest9
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Given the reward customer type and valid dates for hotel ridgewood should return hotel rates.
+        /// </summary>
         public void GivenRewardCustomerTypeAndValidDatesForHotelRidgewood_ShouldReturn_HotelRates()
         {
             Hotel hotel = new Hotel(HotelType.RIDGEWOOD, CustomerType.REWARD);
@@ -29,6 +35,9 @@ namespace HotelReservationTest9
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Given the reward customer type and valid dates for hotel lakewood should return hotel rates.
+        /// </summary>
         [TestMethod]
         public void GivenRewardCustomerTypeAndValidDatesForHotelLakewood_ShouldReturn_HotelRates()
         {
