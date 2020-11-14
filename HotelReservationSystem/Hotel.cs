@@ -6,7 +6,7 @@ using System.Text;
 namespace HotelReservationSystem
 {
     public enum CustomerType { NORMAL = 1, REWARD }
-    class Hotel
+    public class Hotel
     {
         //Hotel name
         HotelType type;
