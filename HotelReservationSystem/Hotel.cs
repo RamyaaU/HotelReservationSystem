@@ -107,6 +107,7 @@ namespace HotelReservationSystem
                 throw new HotelReservationException(HotelReservationException.ExceptionType.INVALID_HOTEL_TYPE, "Invalid Hotel Type");
             }
         }
+
         /// <summary>
         /// Finds rate of stay from startdate to end date at hotel
         /// </summary>
@@ -115,6 +116,7 @@ namespace HotelReservationSystem
         /// <returns>rate of stay</returns>
         public double FindRate(string startDateString, string endDateString)
         {
+            //initialization
             double rate = 0;
             try
             {

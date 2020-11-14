@@ -14,14 +14,23 @@ namespace HotelReservationSystem
         /// <param name="customerType">Type of the customer.</param>
         public void FindCheapHotel(string startDate, string endDate, CustomerType customerType)
         {
+            //initialization
             HotelType hotelType = HotelType.LAKEWOOD;
+            //parameterized constructor
             Hotel lakewood = new Hotel(hotelType, customerType);
+            //finds rate of hotel from given startdate to enddate
             double rateLakewood = lakewood.FindRate(startDate, endDate);
+            //initialization
             hotelType = HotelType.BRIDGEWOOD;
+            //parameterized constructor
             Hotel bridgewood = new Hotel(hotelType, customerType);
+            //finds rate of hotel from given startdate to enddate
             double rateBridgewood = bridgewood.FindRate(startDate, endDate);
+            //initialization
             hotelType = HotelType.RIDGEWOOD;
+            //parameterized constructor
             Hotel ridgewood = new Hotel(hotelType, customerType);
+            //finds rate of hotel from given startdate to enddate
             double rateRidgewood = ridgewood.FindRate(startDate, endDate);
             if (rateLakewood < rateBridgewood && rateLakewood < rateRidgewood)
             {
@@ -44,14 +53,23 @@ namespace HotelReservationSystem
         /// <param name="endDate"></param>
         public void FindBestRatedHotel(string startDate, string endDate, CustomerType customerType)
         {
+            //initialization
             HotelType hotelType = HotelType.LAKEWOOD;
+            //parameterized constructor
             Hotel lakewood = new Hotel(hotelType, customerType);
+            //finds rate of hotel from given startdate to enddate
             double rateLakewood = lakewood.FindRate(startDate, endDate);
+            //initialization
             hotelType = HotelType.BRIDGEWOOD;
+            //parameterized constructor
             Hotel bridgewood = new Hotel(hotelType, customerType);
+            //finds rate of hotel from given startdate to enddate
             double rateBridgewood = bridgewood.FindRate(startDate, endDate);
+            //initialization
             hotelType = HotelType.RIDGEWOOD;
+            //parameterized constructor
             Hotel ridgewood = new Hotel(hotelType, customerType);
+            //finds rate of hotel from given startdate to enddate
             double rateRidgewood = ridgewood.FindRate(startDate, endDate);
             if (lakewood.RATING > bridgewood.RATING && lakewood.RATING > ridgewood.RATING)
                 Console.WriteLine("Best hotel for your stay is " + HotelType.LAKEWOOD + ", Rating: " + lakewood.RATING + ", Cost of stay: " + rateLakewood);

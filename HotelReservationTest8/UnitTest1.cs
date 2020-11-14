@@ -7,46 +7,46 @@ namespace HotelReservationTest8
     public class UnitTest1
     {
         /// <summary>
-        /// Givens the regular customer type and valid dates for hotel lakewood should return hotel rates.
+        /// Given the reward customer type and valid dates for hotel lakewood should return hotel rates.
         /// </summary>
         [TestMethod]
-        public void GivenRegularCustomerTypeAndValidDatesForHotelLakewood_ShouldReturn_HotelRates()
+        public void GivenRewardCustomer_ForDateRange_ForHotelLakewood_ShouldReturn_HotelRates()
         {
-            Hotel hotel = new Hotel(HotelType.LAKEWOOD, CustomerType.NORMAL);
+            Hotel hotel = new Hotel(HotelType.LAKEWOOD, CustomerType.REWARD);
             //Arrange
-            double expected = 200;
+            double expected = 160;
             //Act
-            double actual = hotel.FindRate("11-09-2020", "12-09-2020");
+            double actual = hotel.FindRate("11/09/2020", "12/09/2020");
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
-        /// Given the regular customer type and valid dates for hotel bridgewood should return hotel rates.
+        /// Given the reward customer type and valid dates for hotel bridgewood should return hotel rates.
         /// </summary>
         [TestMethod]
-        public void GivenRegularCustomerTypeAndValidDatesForHotelBridgewood_ShouldReturn_HotelRates()
+        public void GivenRewardCustomer_ForDateRange_ForHotelBridgewood_ShouldReturn_HotelRates()
         {
-            Hotel hotel = new Hotel(HotelType.BRIDGEWOOD, CustomerType.NORMAL);
+            Hotel hotel = new Hotel(HotelType.BRIDGEWOOD, CustomerType.REWARD);
             //Arrange
-            double expected = 200;
+            double expected = 160;
             //Act
-            double actual = hotel.FindRate("11-09-2020", "12-09-2020");
+            double actual = hotel.FindRate("11/09/2020", "12/09/2020");
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
-        /// Given the regular customer type and valid dates for hotel ridgewood should return hotel rates.
+        /// Given the reward customer type and valid dates for hotel ridgewood should return hotel rates.
         /// </summary>
         [TestMethod]
-        public void GivenRegularCustomerTypeAndValidDatesForHotelRidgewood_ShouldReturn_HotelRates()
+        public void GivenRewardCustomer_ForDateRange_ForHotelRidgewood_ShouldReturn_HotelRates()
         {
-            Hotel hotel = new Hotel(HotelType.RIDGEWOOD, CustomerType.NORMAL);
+            Hotel hotel = new Hotel(HotelType.RIDGEWOOD, CustomerType.REWARD);
             //Arrange
-            double expected = 370;
+            double expected = 140;
             //Act
-            double actual = hotel.FindRate("11-09-2020", "12-09-2020");
+            double actual = hotel.FindRate("11/09/2020", "12/09/2020");
             //Assert
             Assert.AreEqual(expected, actual);
         }
